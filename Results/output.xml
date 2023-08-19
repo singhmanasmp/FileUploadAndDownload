@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.11.4 on win32)" generated="20230819 23:57:10.944" rpa="false" schemaversion="4">
+<suite id="s1" name="TestCases" source="C:\Users\Sadhana\PycharmProjects\FileUploadAndDownload\Tests\TestCases.robot">
+<kw name="Run Keywords" library="BuiltIn" type="SETUP">
+<arg>Connect to MongoDB</arg>
+<arg>AND</arg>
+<arg>Launch Application</arg>
+<doc>Executes all the given keywords in a sequence.</doc>
+<kw name="Connect to MongoDB" library="mongodb">
+<kw name="Evaluate" library="BuiltIn">
+<var>${client}</var>
+<arg>pymongo.MongoClient('mongodb://localhost:27017/')</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230819 23:57:11.988" level="INFO">${client} = MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=True)</msg>
+<status status="PASS" starttime="20230819 23:57:11.979" endtime="20230819 23:57:11.988"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${db}</var>
+<arg>${client.${DB_Name}}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230819 23:57:11.989" level="INFO">${db} = Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=True), 'file_upload')</msg>
+<status status="PASS" starttime="20230819 23:57:11.988" endtime="20230819 23:57:11.989"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${collection}</var>
+<arg>${db.${Collection_Name}}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230819 23:57:11.990" level="INFO">${collection} = Collection(Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=True), 'file_upload'), 'files')</msg>
+<status status="PASS" starttime="20230819 23:57:11.989" endtime="20230819 23:57:11.990"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Connect to MongoDB!</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230819 23:57:11.990" level="INFO">Connect to MongoDB!</msg>
+<status status="PASS" starttime="20230819 23:57:11.990" endtime="20230819 23:57:11.990"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:11.979" endtime="20230819 23:57:11.990"/>
+</kw>
+<kw name="Launch application" library="Keywords">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${Browser_Type}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230819 23:57:11.991" level="INFO">Opening browser 'chrome' to base url 'http://localhost:3030/'.</msg>
+<status status="PASS" starttime="20230819 23:57:11.991" endtime="20230819 23:57:18.136"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20230819 23:57:18.137" endtime="20230819 23:57:18.166"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20230819 23:57:18.166" endtime="20230819 23:57:18.291"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:11.990" endtime="20230819 23:57:18.292"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:11.979" endtime="20230819 23:57:18.292"/>
+</kw>
+<test id="s1-t1" name="TC1 : Upload a file with supported format" line="17">
+<kw name="Upload file and hit Submit" library="Keywords">
+<arg>TC1</arg>
+<kw name="Read Csv File" library="Csv">
+<var>${file1}</var>
+<var>${file2}</var>
+<var>${file3}</var>
+<arg>${CSVFilePath}</arg>
+<arg>${testcaseid}</arg>
+<msg timestamp="20230819 23:57:18.297" level="INFO">${file1} = File1</msg>
+<msg timestamp="20230819 23:57:18.297" level="INFO">${file2} = adding 1st file in the app</msg>
+<msg timestamp="20230819 23:57:18.297" level="INFO">${file3} = F1.jpeg</msg>
+<status status="PASS" starttime="20230819 23:57:18.295" endtime="20230819 23:57:18.297"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20230819 23:57:18.297" endtime="20230819 23:57:19.060"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Home_Tab}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:19.061" level="INFO">Clicking element 'xpath=//a[contains(text(), 'Home')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:19.060" endtime="20230819 23:57:19.132"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20230819 23:57:19.132" endtime="20230819 23:57:19.144"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Title_Input_Field}</arg>
+<arg>${file1}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:19.145" level="INFO">Typing text 'File1' into text field 'id=title'.</msg>
+<status status="PASS" starttime="20230819 23:57:19.144" endtime="20230819 23:57:19.269"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Description_Input_Field}</arg>
+<arg>${file2}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:19.270" level="INFO">Typing text 'adding 1st file in the app' into text field 'id=description'.</msg>
+<status status="PASS" starttime="20230819 23:57:19.269" endtime="20230819 23:57:19.436"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>${Select_File}</arg>
+<arg>${FPath}\\${file3}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20230819 23:57:19.437" level="INFO">Sending C:\Users\Sadhana\PycharmProjects\FileUploadAndDownload\Resources\InputFiles\F1.jpeg to browser.</msg>
+<status status="PASS" starttime="20230819 23:57:19.436" endtime="20230819 23:57:19.474"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:21.476" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:19.474" endtime="20230819 23:57:21.476"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:21.477" level="INFO">Clicking element 'xpath=//button[@type='submit']'.</msg>
+<status status="PASS" starttime="20230819 23:57:21.476" endtime="20230819 23:57:21.555"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:18.295" endtime="20230819 23:57:21.556"/>
+</kw>
+<kw name="Verification in Files List tab" library="Keywords">
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:23.557" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:21.557" endtime="20230819 23:57:23.557"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Files_List_Tab}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:23.560" level="INFO">Clicking element 'xpath=//a[@href='/list']'.</msg>
+<status status="PASS" starttime="20230819 23:57:23.557" endtime="20230819 23:57:23.623"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>${File_Name_In_Files_Tab}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20230819 23:57:23.642" level="INFO">Current page contains element 'xpath=//td[contains(text(), 'File1')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:23.623" endtime="20230819 23:57:23.642"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:21.556" endtime="20230819 23:57:23.643"/>
+</kw>
+<kw name="Verification of a record in DB" library="mongodb">
+<kw name="Query Search" library="mongodb">
+<var>${record}</var>
+<msg timestamp="20230819 23:57:23.664" level="INFO">Record found:</msg>
+<msg timestamp="20230819 23:57:23.664" level="INFO">${record} = {'_id': ObjectId('64e109892ef85a14bc87466e'), 'title': 'File1', 'description': 'adding 1st file in the app', 'file_path': 'files\\1692469641557_F1.jpeg', 'file_mimetype': 'image/jpeg', 'createdAt': da...</msg>
+<status status="PASS" starttime="20230819 23:57:23.644" endtime="20230819 23:57:23.664"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Record present in DB!</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230819 23:57:23.665" level="INFO">Record present in DB!</msg>
+<status status="PASS" starttime="20230819 23:57:23.664" endtime="20230819 23:57:23.665"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:23.643" endtime="20230819 23:57:23.665"/>
+</kw>
+<doc>This test case will check upload of a valid format file</doc>
+<tag>Functional</tag>
+<tag>Positive</tag>
+<status status="PASS" starttime="20230819 23:57:18.292" endtime="20230819 23:57:23.665"/>
+</test>
+<test id="s1-t2" name="TC2 : Upload a file with unsupported format" line="25">
+<kw name="Upload file and hit Submit" library="Keywords">
+<arg>TC2</arg>
+<kw name="Read Csv File" library="Csv">
+<var>${file1}</var>
+<var>${file2}</var>
+<var>${file3}</var>
+<arg>${CSVFilePath}</arg>
+<arg>${testcaseid}</arg>
+<msg timestamp="20230819 23:57:23.670" level="INFO">${file1} = File2</msg>
+<msg timestamp="20230819 23:57:23.670" level="INFO">${file2} = adding 2nd file in the app</msg>
+<msg timestamp="20230819 23:57:23.670" level="INFO">${file3} = F2.HEIC</msg>
+<status status="PASS" starttime="20230819 23:57:23.668" endtime="20230819 23:57:23.670"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20230819 23:57:23.671" endtime="20230819 23:57:23.901"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Home_Tab}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:23.903" level="INFO">Clicking element 'xpath=//a[contains(text(), 'Home')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:23.901" endtime="20230819 23:57:23.962"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20230819 23:57:23.962" endtime="20230819 23:57:23.976"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Title_Input_Field}</arg>
+<arg>${file1}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:23.977" level="INFO">Typing text 'File2' into text field 'id=title'.</msg>
+<status status="PASS" starttime="20230819 23:57:23.977" endtime="20230819 23:57:24.072"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Description_Input_Field}</arg>
+<arg>${file2}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:24.073" level="INFO">Typing text 'adding 2nd file in the app' into text field 'id=description'.</msg>
+<status status="PASS" starttime="20230819 23:57:24.073" endtime="20230819 23:57:24.230"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>${Select_File}</arg>
+<arg>${FPath}\\${file3}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20230819 23:57:24.231" level="INFO">Sending C:\Users\Sadhana\PycharmProjects\FileUploadAndDownload\Resources\InputFiles\F2.HEIC to browser.</msg>
+<status status="PASS" starttime="20230819 23:57:24.230" endtime="20230819 23:57:24.261"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:26.263" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:24.261" endtime="20230819 23:57:26.263"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:26.263" level="INFO">Clicking element 'xpath=//button[@type='submit']'.</msg>
+<status status="PASS" starttime="20230819 23:57:26.263" endtime="20230819 23:57:26.307"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:23.668" endtime="20230819 23:57:26.307"/>
+</kw>
+<kw name="Verification of Error Message" library="Keywords">
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:28.310" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:26.309" endtime="20230819 23:57:28.310"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>${Unsupported_File_Error_Message}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20230819 23:57:28.340" level="INFO">Current page contains element 'xpath=//p[contains(text(),'only upload files with jpg, jpeg, png, pdf, doc, docx, xslx, xls format.')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:28.311" endtime="20230819 23:57:28.340"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:26.308" endtime="20230819 23:57:28.340"/>
+</kw>
+<doc>This test case will check warning message for unsupported file type</doc>
+<tag>Functional</tag>
+<tag>Negative</tag>
+<status status="PASS" starttime="20230819 23:57:23.667" endtime="20230819 23:57:28.341"/>
+</test>
+<test id="s1-t3" name="TC3 : Upload a file with blank title and a description" line="32">
+<kw name="Upload file and hit Submit" library="Keywords">
+<arg>TC3</arg>
+<kw name="Read Csv File" library="Csv">
+<var>${file1}</var>
+<var>${file2}</var>
+<var>${file3}</var>
+<arg>${CSVFilePath}</arg>
+<arg>${testcaseid}</arg>
+<msg timestamp="20230819 23:57:28.345" level="INFO">${file1} = </msg>
+<msg timestamp="20230819 23:57:28.346" level="INFO">${file2} = adding 3rd file in the app</msg>
+<msg timestamp="20230819 23:57:28.346" level="INFO">${file3} = F1.jpeg</msg>
+<status status="PASS" starttime="20230819 23:57:28.344" endtime="20230819 23:57:28.346"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20230819 23:57:28.346" endtime="20230819 23:57:28.393"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Home_Tab}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:28.394" level="INFO">Clicking element 'xpath=//a[contains(text(), 'Home')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:28.393" endtime="20230819 23:57:28.446"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20230819 23:57:28.446" endtime="20230819 23:57:28.460"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Title_Input_Field}</arg>
+<arg>${file1}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:28.461" level="INFO">Typing text '' into text field 'id=title'.</msg>
+<status status="PASS" starttime="20230819 23:57:28.460" endtime="20230819 23:57:28.558"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Description_Input_Field}</arg>
+<arg>${file2}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:28.559" level="INFO">Typing text 'adding 3rd file in the app' into text field 'id=description'.</msg>
+<status status="PASS" starttime="20230819 23:57:28.558" endtime="20230819 23:57:28.742"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>${Select_File}</arg>
+<arg>${FPath}\\${file3}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20230819 23:57:28.744" level="INFO">Sending C:\Users\Sadhana\PycharmProjects\FileUploadAndDownload\Resources\InputFiles\F1.jpeg to browser.</msg>
+<status status="PASS" starttime="20230819 23:57:28.742" endtime="20230819 23:57:28.775"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:30.776" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:28.775" endtime="20230819 23:57:30.776"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:30.777" level="INFO">Clicking element 'xpath=//button[@type='submit']'.</msg>
+<status status="PASS" starttime="20230819 23:57:30.776" endtime="20230819 23:57:30.823"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:28.344" endtime="20230819 23:57:30.824"/>
+</kw>
+<kw name="Verification of Blank Field Warning Message" library="Keywords">
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:32.826" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:30.825" endtime="20230819 23:57:32.826"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>${Blank_Field_Warning_Message}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20230819 23:57:32.843" level="INFO">Current page contains element 'xpath=//p[contains(text(), 'Please enter all the field values.')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:32.827" endtime="20230819 23:57:32.843"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:30.824" endtime="20230819 23:57:32.843"/>
+</kw>
+<doc>This test case will check for warning message when Title field is left blank</doc>
+<tag>Functional</tag>
+<tag>Negative</tag>
+<status status="PASS" starttime="20230819 23:57:28.343" endtime="20230819 23:57:32.844"/>
+</test>
+<test id="s1-t4" name="TC4 : Upload a file with blank description and a title" line="39">
+<kw name="Upload file and hit Submit" library="Keywords">
+<arg>TC4</arg>
+<kw name="Read Csv File" library="Csv">
+<var>${file1}</var>
+<var>${file2}</var>
+<var>${file3}</var>
+<arg>${CSVFilePath}</arg>
+<arg>${testcaseid}</arg>
+<msg timestamp="20230819 23:57:32.847" level="INFO">${file1} = File4</msg>
+<msg timestamp="20230819 23:57:32.847" level="INFO">${file2} = </msg>
+<msg timestamp="20230819 23:57:32.847" level="INFO">${file3} = F1.jpeg</msg>
+<status status="PASS" starttime="20230819 23:57:32.846" endtime="20230819 23:57:32.847"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20230819 23:57:32.847" endtime="20230819 23:57:32.894"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Home_Tab}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:32.895" level="INFO">Clicking element 'xpath=//a[contains(text(), 'Home')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:32.894" endtime="20230819 23:57:32.946"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20230819 23:57:32.947" endtime="20230819 23:57:32.960"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Title_Input_Field}</arg>
+<arg>${file1}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:32.960" level="INFO">Typing text 'File4' into text field 'id=title'.</msg>
+<status status="PASS" starttime="20230819 23:57:32.960" endtime="20230819 23:57:33.061"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Description_Input_Field}</arg>
+<arg>${file2}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:33.062" level="INFO">Typing text '' into text field 'id=description'.</msg>
+<status status="PASS" starttime="20230819 23:57:33.061" endtime="20230819 23:57:33.151"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>${Select_File}</arg>
+<arg>${FPath}\\${file3}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20230819 23:57:33.152" level="INFO">Sending C:\Users\Sadhana\PycharmProjects\FileUploadAndDownload\Resources\InputFiles\F1.jpeg to browser.</msg>
+<status status="PASS" starttime="20230819 23:57:33.151" endtime="20230819 23:57:33.193"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:35.194" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:33.193" endtime="20230819 23:57:35.194"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:35.195" level="INFO">Clicking element 'xpath=//button[@type='submit']'.</msg>
+<status status="PASS" starttime="20230819 23:57:35.194" endtime="20230819 23:57:35.256"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:32.846" endtime="20230819 23:57:35.256"/>
+</kw>
+<kw name="Verification of Blank Field Warning Message" library="Keywords">
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:37.259" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:35.258" endtime="20230819 23:57:37.259"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>${Blank_Field_Warning_Message}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20230819 23:57:37.269" level="INFO">Current page contains element 'xpath=//p[contains(text(), 'Please enter all the field values.')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:37.259" endtime="20230819 23:57:37.269"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:35.257" endtime="20230819 23:57:37.269"/>
+</kw>
+<doc>This test case will check for warning message when Description field is left blank</doc>
+<tag>Functional</tag>
+<tag>Negative</tag>
+<status status="PASS" starttime="20230819 23:57:32.845" endtime="20230819 23:57:37.270"/>
+</test>
+<test id="s1-t5" name="TC5 : Select a file but don't add title and description" line="46">
+<kw name="Upload file and hit Submit" library="Keywords">
+<arg>TC5</arg>
+<kw name="Read Csv File" library="Csv">
+<var>${file1}</var>
+<var>${file2}</var>
+<var>${file3}</var>
+<arg>${CSVFilePath}</arg>
+<arg>${testcaseid}</arg>
+<msg timestamp="20230819 23:57:37.274" level="INFO">${file1} = </msg>
+<msg timestamp="20230819 23:57:37.274" level="INFO">${file2} = </msg>
+<msg timestamp="20230819 23:57:37.274" level="INFO">${file3} = F5.jpeg</msg>
+<status status="PASS" starttime="20230819 23:57:37.272" endtime="20230819 23:57:37.275"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20230819 23:57:37.275" endtime="20230819 23:57:37.337"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Home_Tab}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:37.339" level="INFO">Clicking element 'xpath=//a[contains(text(), 'Home')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:37.337" endtime="20230819 23:57:37.406"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20230819 23:57:37.406" endtime="20230819 23:57:37.418"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Title_Input_Field}</arg>
+<arg>${file1}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:37.419" level="INFO">Typing text '' into text field 'id=title'.</msg>
+<status status="PASS" starttime="20230819 23:57:37.418" endtime="20230819 23:57:37.513"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Description_Input_Field}</arg>
+<arg>${file2}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:37.515" level="INFO">Typing text '' into text field 'id=description'.</msg>
+<status status="PASS" starttime="20230819 23:57:37.514" endtime="20230819 23:57:37.655"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>${Select_File}</arg>
+<arg>${FPath}\\${file3}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20230819 23:57:37.657" level="INFO">Sending C:\Users\Sadhana\PycharmProjects\FileUploadAndDownload\Resources\InputFiles\F5.jpeg to browser.</msg>
+<status status="PASS" starttime="20230819 23:57:37.655" endtime="20230819 23:57:37.709"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:39.710" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:37.709" endtime="20230819 23:57:39.710"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:39.711" level="INFO">Clicking element 'xpath=//button[@type='submit']'.</msg>
+<status status="PASS" starttime="20230819 23:57:39.711" endtime="20230819 23:57:39.762"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:37.272" endtime="20230819 23:57:39.762"/>
+</kw>
+<kw name="Verification of Blank Field Warning Message" library="Keywords">
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:41.765" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:39.764" endtime="20230819 23:57:41.765"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>${Blank_Field_Warning_Message}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20230819 23:57:41.774" level="INFO">Current page contains element 'xpath=//p[contains(text(), 'Please enter all the field values.')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:41.765" endtime="20230819 23:57:41.774"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:39.763" endtime="20230819 23:57:41.774"/>
+</kw>
+<doc>This test case will check for warning message when a file is selected with blank title and description</doc>
+<tag>Functional</tag>
+<tag>Negative</tag>
+<status status="PASS" starttime="20230819 23:57:37.271" endtime="20230819 23:57:41.775"/>
+</test>
+<test id="s1-t6" name="TC6 : Upload a duplicate file" line="53">
+<kw name="Upload file and hit Submit" library="Keywords">
+<arg>TC6</arg>
+<kw name="Read Csv File" library="Csv">
+<var>${file1}</var>
+<var>${file2}</var>
+<var>${file3}</var>
+<arg>${CSVFilePath}</arg>
+<arg>${testcaseid}</arg>
+<msg timestamp="20230819 23:57:41.778" level="INFO">${file1} = File6</msg>
+<msg timestamp="20230819 23:57:41.778" level="INFO">${file2} = adding a duplicate file in the app</msg>
+<msg timestamp="20230819 23:57:41.778" level="INFO">${file3} = F1.jpeg</msg>
+<status status="PASS" starttime="20230819 23:57:41.777" endtime="20230819 23:57:41.778"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20230819 23:57:41.778" endtime="20230819 23:57:41.825"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Home_Tab}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:41.826" level="INFO">Clicking element 'xpath=//a[contains(text(), 'Home')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:41.825" endtime="20230819 23:57:41.882"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20230819 23:57:41.882" endtime="20230819 23:57:41.893"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Title_Input_Field}</arg>
+<arg>${file1}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:41.894" level="INFO">Typing text 'File6' into text field 'id=title'.</msg>
+<status status="PASS" starttime="20230819 23:57:41.893" endtime="20230819 23:57:42.001"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Description_Input_Field}</arg>
+<arg>${file2}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:42.002" level="INFO">Typing text 'adding a duplicate file in the app' into text field 'id=description'.</msg>
+<status status="PASS" starttime="20230819 23:57:42.001" endtime="20230819 23:57:42.199"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>${Select_File}</arg>
+<arg>${FPath}\\${file3}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20230819 23:57:42.200" level="INFO">Sending C:\Users\Sadhana\PycharmProjects\FileUploadAndDownload\Resources\InputFiles\F1.jpeg to browser.</msg>
+<status status="PASS" starttime="20230819 23:57:42.199" endtime="20230819 23:57:42.236"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:44.237" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:42.236" endtime="20230819 23:57:44.237"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:44.239" level="INFO">Clicking element 'xpath=//button[@type='submit']'.</msg>
+<status status="PASS" starttime="20230819 23:57:44.237" endtime="20230819 23:57:44.284"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:41.777" endtime="20230819 23:57:44.284"/>
+</kw>
+<kw name="Verification of Error Message" library="Keywords">
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:46.285" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:44.285" endtime="20230819 23:57:46.286"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>${Unsupported_File_Error_Message}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20230819 23:57:46.409" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-25.png"&gt;&lt;img src="selenium-screenshot-25.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20230819 23:57:46.409" level="FAIL">Page should have contained element 'xpath=//p[contains(text(),'only upload files with jpg, jpeg, png, pdf, doc, docx, xslx, xls format.')]' but did not.</msg>
+<status status="FAIL" starttime="20230819 23:57:46.287" endtime="20230819 23:57:46.414"/>
+</kw>
+<status status="FAIL" starttime="20230819 23:57:44.285" endtime="20230819 23:57:46.414"/>
+</kw>
+<doc>This test case will check for a warning message on same file upload</doc>
+<tag>Functional</tag>
+<tag>Negative</tag>
+<status status="FAIL" starttime="20230819 23:57:41.776" endtime="20230819 23:57:46.415">Page should have contained element 'xpath=//p[contains(text(),'only upload files with jpg, jpeg, png, pdf, doc, docx, xslx, xls format.')]' but did not.</status>
+</test>
+<test id="s1-t7" name="TC7 : Upload a file with alphanumeric title and description" line="60">
+<kw name="Upload file and hit Submit" library="Keywords">
+<arg>TC7</arg>
+<kw name="Read Csv File" library="Csv">
+<var>${file1}</var>
+<var>${file2}</var>
+<var>${file3}</var>
+<arg>${CSVFilePath}</arg>
+<arg>${testcaseid}</arg>
+<msg timestamp="20230819 23:57:46.418" level="INFO">${file1} = File7_~!@#$%^&amp;*()+|}{:?&gt;&lt;./;'\][=-</msg>
+<msg timestamp="20230819 23:57:46.418" level="INFO">${file2} = ~!@#$%^&amp;*()_+|}{:?&gt;&lt;./;'\][=-</msg>
+<msg timestamp="20230819 23:57:46.418" level="INFO">${file3} = F7.jpeg</msg>
+<status status="PASS" starttime="20230819 23:57:46.417" endtime="20230819 23:57:46.418"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20230819 23:57:46.419" endtime="20230819 23:57:46.460"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Home_Tab}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:46.462" level="INFO">Clicking element 'xpath=//a[contains(text(), 'Home')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:46.460" endtime="20230819 23:57:46.524"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20230819 23:57:46.524" endtime="20230819 23:57:46.536"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Title_Input_Field}</arg>
+<arg>${file1}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:46.537" level="INFO">Typing text 'File7_~!@#$%^&amp;*()+|}{:?&gt;&lt;./;'\][=-' into text field 'id=title'.</msg>
+<status status="PASS" starttime="20230819 23:57:46.537" endtime="20230819 23:57:46.701"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Description_Input_Field}</arg>
+<arg>${file2}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:46.702" level="INFO">Typing text '~!@#$%^&amp;*()_+|}{:?&gt;&lt;./;'\][=-' into text field 'id=description'.</msg>
+<status status="PASS" starttime="20230819 23:57:46.702" endtime="20230819 23:57:46.877"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>${Select_File}</arg>
+<arg>${FPath}\\${file3}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20230819 23:57:46.879" level="INFO">Sending C:\Users\Sadhana\PycharmProjects\FileUploadAndDownload\Resources\InputFiles\F7.jpeg to browser.</msg>
+<status status="PASS" starttime="20230819 23:57:46.877" endtime="20230819 23:57:46.910"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:48.910" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:46.910" endtime="20230819 23:57:48.911"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:48.914" level="INFO">Clicking element 'xpath=//button[@type='submit']'.</msg>
+<status status="PASS" starttime="20230819 23:57:48.912" endtime="20230819 23:57:48.957"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:46.417" endtime="20230819 23:57:48.957"/>
+</kw>
+<kw name="Verification in Files List tab" library="Keywords">
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:50.960" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:48.959" endtime="20230819 23:57:50.960"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Files_List_Tab}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:50.962" level="INFO">Clicking element 'xpath=//a[@href='/list']'.</msg>
+<status status="PASS" starttime="20230819 23:57:50.961" endtime="20230819 23:57:51.008"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>${File_Name_In_Files_Tab}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20230819 23:57:51.020" level="INFO">Current page contains element 'xpath=//td[contains(text(), 'File1')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:51.008" endtime="20230819 23:57:51.020"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:48.958" endtime="20230819 23:57:51.020"/>
+</kw>
+<kw name="Verification of a record in DB" library="mongodb">
+<kw name="Query Search" library="mongodb">
+<var>${record}</var>
+<msg timestamp="20230819 23:57:51.044" level="INFO">Record found:</msg>
+<msg timestamp="20230819 23:57:51.044" level="INFO">${record} = {'_id': ObjectId('64e109892ef85a14bc87466e'), 'title': 'File1', 'description': 'adding 1st file in the app', 'file_path': 'files\\1692469641557_F1.jpeg', 'file_mimetype': 'image/jpeg', 'createdAt': da...</msg>
+<status status="PASS" starttime="20230819 23:57:51.021" endtime="20230819 23:57:51.044"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Record present in DB!</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230819 23:57:51.045" level="INFO">Record present in DB!</msg>
+<status status="PASS" starttime="20230819 23:57:51.045" endtime="20230819 23:57:51.045"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:51.021" endtime="20230819 23:57:51.045"/>
+</kw>
+<doc>This test case will check upload of a valid format file</doc>
+<tag>Functional</tag>
+<tag>Positive</tag>
+<status status="PASS" starttime="20230819 23:57:46.416" endtime="20230819 23:57:51.046"/>
+</test>
+<test id="s1-t8" name="TC8 : Delete a file" line="68">
+<kw name="Deletion of a record" library="mongodb">
+<kw name="Delete Query" library="mongodb">
+<var>${record}</var>
+<msg timestamp="20230819 23:57:51.062" level="INFO">Record is deleted</msg>
+<msg timestamp="20230819 23:57:51.062" level="INFO">${record} = &lt;pymongo.results.DeleteResult object at 0x000001739EA33BE0&gt;</msg>
+<status status="PASS" starttime="20230819 23:57:51.048" endtime="20230819 23:57:51.062"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Record deleted from DB!</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230819 23:57:51.062" level="INFO">Record deleted from DB!</msg>
+<status status="PASS" starttime="20230819 23:57:51.062" endtime="20230819 23:57:51.062"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:51.048" endtime="20230819 23:57:51.062"/>
+</kw>
+<kw name="Verification of a File Deletion from UI" library="Keywords">
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:53.064" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:51.063" endtime="20230819 23:57:53.064"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20230819 23:57:53.064" endtime="20230819 23:57:53.123"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Files_List_Tab}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:53.125" level="INFO">Clicking element 'xpath=//a[@href='/list']'.</msg>
+<status status="PASS" starttime="20230819 23:57:53.124" endtime="20230819 23:57:53.178"/>
+</kw>
+<kw name="Page Should Not Contain Element" library="SeleniumLibrary">
+<arg>${File_Name_In_Files_Tab}</arg>
+<doc>Verifies that element ``locator`` is not found on the current page.</doc>
+<msg timestamp="20230819 23:57:53.188" level="INFO">Current page does not contain element 'xpath=//td[contains(text(), 'File1')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:53.178" endtime="20230819 23:57:53.188"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:51.063" endtime="20230819 23:57:53.188"/>
+</kw>
+<doc>This test case will check for a file deletion from UI and DB</doc>
+<tag>Functional</tag>
+<tag>Positive</tag>
+<status status="PASS" starttime="20230819 23:57:51.047" endtime="20230819 23:57:53.188"/>
+</test>
+<test id="s1-t9" name="TC9 : Delete all files" line="75">
+<kw name="Deletion of All records" library="mongodb">
+<kw name="Delete All Query" library="mongodb">
+<var>${record}</var>
+<msg timestamp="20230819 23:57:53.205" level="INFO">All Records are deleted</msg>
+<msg timestamp="20230819 23:57:53.205" level="INFO">${record} = None</msg>
+<status status="PASS" starttime="20230819 23:57:53.191" endtime="20230819 23:57:53.205"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>All Records deleted from DB!</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230819 23:57:53.206" level="INFO">All Records deleted from DB!</msg>
+<status status="PASS" starttime="20230819 23:57:53.205" endtime="20230819 23:57:53.206"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:53.191" endtime="20230819 23:57:53.206"/>
+</kw>
+<kw name="Verification of All Files Deletion from UI" library="Keywords">
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:55.208" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:53.206" endtime="20230819 23:57:55.208"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20230819 23:57:55.208" endtime="20230819 23:57:55.255"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Files_List_Tab}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:55.256" level="INFO">Clicking element 'xpath=//a[@href='/list']'.</msg>
+<status status="PASS" starttime="20230819 23:57:55.255" endtime="20230819 23:57:55.308"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>${No_Files_Found_Message}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20230819 23:57:55.324" level="INFO">Current page contains element 'xpath=//td[contains(text(), 'No files found. Please add some.')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:55.308" endtime="20230819 23:57:55.324"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:53.206" endtime="20230819 23:57:55.324"/>
+</kw>
+<doc>This test case will check for all files deletion from UI and DB</doc>
+<tag>Functional</tag>
+<tag>Positive</tag>
+<status status="PASS" starttime="20230819 23:57:53.190" endtime="20230819 23:57:55.325"/>
+</test>
+<test id="s1-t10" name="TC10 : Verification of image preview of a valid file" line="82">
+<kw name="Upload file and hit Submit" library="Keywords">
+<arg>TC3</arg>
+<kw name="Read Csv File" library="Csv">
+<var>${file1}</var>
+<var>${file2}</var>
+<var>${file3}</var>
+<arg>${CSVFilePath}</arg>
+<arg>${testcaseid}</arg>
+<msg timestamp="20230819 23:57:55.329" level="INFO">${file1} = </msg>
+<msg timestamp="20230819 23:57:55.329" level="INFO">${file2} = adding 3rd file in the app</msg>
+<msg timestamp="20230819 23:57:55.329" level="INFO">${file3} = F1.jpeg</msg>
+<status status="PASS" starttime="20230819 23:57:55.328" endtime="20230819 23:57:55.329"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20230819 23:57:55.329" endtime="20230819 23:57:55.370"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Home_Tab}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:55.371" level="INFO">Clicking element 'xpath=//a[contains(text(), 'Home')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:55.370" endtime="20230819 23:57:55.435"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20230819 23:57:55.435" endtime="20230819 23:57:55.445"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Title_Input_Field}</arg>
+<arg>${file1}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:55.446" level="INFO">Typing text '' into text field 'id=title'.</msg>
+<status status="PASS" starttime="20230819 23:57:55.445" endtime="20230819 23:57:55.527"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Description_Input_Field}</arg>
+<arg>${file2}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:55.529" level="INFO">Typing text 'adding 3rd file in the app' into text field 'id=description'.</msg>
+<status status="PASS" starttime="20230819 23:57:55.527" endtime="20230819 23:57:55.693"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>${Select_File}</arg>
+<arg>${FPath}\\${file3}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20230819 23:57:55.694" level="INFO">Sending C:\Users\Sadhana\PycharmProjects\FileUploadAndDownload\Resources\InputFiles\F1.jpeg to browser.</msg>
+<status status="PASS" starttime="20230819 23:57:55.693" endtime="20230819 23:57:55.730"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:57.732" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:55.730" endtime="20230819 23:57:57.732"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:57.735" level="INFO">Clicking element 'xpath=//button[@type='submit']'.</msg>
+<status status="PASS" starttime="20230819 23:57:57.733" endtime="20230819 23:57:57.779"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:55.327" endtime="20230819 23:57:57.780"/>
+</kw>
+<kw name="Verification of Image Preview" library="Keywords">
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:57:59.783" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:57:57.780" endtime="20230819 23:57:59.783"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>${Image_Preview}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20230819 23:57:59.802" level="INFO">Current page contains element 'xpath=//img[@class='preview-image']'.</msg>
+<status status="PASS" starttime="20230819 23:57:59.783" endtime="20230819 23:57:59.802"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:57.780" endtime="20230819 23:57:59.802"/>
+</kw>
+<doc>This test case will check the image preview of a valid format file</doc>
+<tag>Functional</tag>
+<tag>Positive</tag>
+<status status="PASS" starttime="20230819 23:57:55.326" endtime="20230819 23:57:59.803"/>
+</test>
+<test id="s1-t11" name="TC11 : No preview after uploading a non image file" line="89">
+<kw name="Upload file and hit Submit" library="Keywords">
+<arg>TC11</arg>
+<kw name="Read Csv File" library="Csv">
+<var>${file1}</var>
+<var>${file2}</var>
+<var>${file3}</var>
+<arg>${CSVFilePath}</arg>
+<arg>${testcaseid}</arg>
+<msg timestamp="20230819 23:57:59.807" level="INFO">${file1} = </msg>
+<msg timestamp="20230819 23:57:59.807" level="INFO">${file2} = adding a non image type file in the app</msg>
+<msg timestamp="20230819 23:57:59.807" level="INFO">${file3} = F11.docx</msg>
+<status status="PASS" starttime="20230819 23:57:59.806" endtime="20230819 23:57:59.807"/>
+</kw>
+<kw name="Reload Page" library="SeleniumLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" starttime="20230819 23:57:59.807" endtime="20230819 23:57:59.857"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Home_Tab}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:59.858" level="INFO">Clicking element 'xpath=//a[contains(text(), 'Home')]'.</msg>
+<status status="PASS" starttime="20230819 23:57:59.858" endtime="20230819 23:57:59.916"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20230819 23:57:59.916" endtime="20230819 23:57:59.929"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Title_Input_Field}</arg>
+<arg>${file1}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:57:59.930" level="INFO">Typing text '' into text field 'id=title'.</msg>
+<status status="PASS" starttime="20230819 23:57:59.929" endtime="20230819 23:58:00.006"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Description_Input_Field}</arg>
+<arg>${file2}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230819 23:58:00.007" level="INFO">Typing text 'adding a non image type file in the app' into text field 'id=description'.</msg>
+<status status="PASS" starttime="20230819 23:58:00.006" endtime="20230819 23:58:00.199"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>${Select_File}</arg>
+<arg>${FPath}\\${file3}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20230819 23:58:00.200" level="INFO">Sending C:\Users\Sadhana\PycharmProjects\FileUploadAndDownload\Resources\InputFiles\F11.docx to browser.</msg>
+<status status="PASS" starttime="20230819 23:58:00.200" endtime="20230819 23:58:00.231"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:58:02.233" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:58:00.232" endtime="20230819 23:58:02.233"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Submit_Button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230819 23:58:02.235" level="INFO">Clicking element 'xpath=//button[@type='submit']'.</msg>
+<status status="PASS" starttime="20230819 23:58:02.234" endtime="20230819 23:58:02.305"/>
+</kw>
+<status status="PASS" starttime="20230819 23:57:59.806" endtime="20230819 23:58:02.305"/>
+</kw>
+<kw name="Verification of No Preview Message" library="Keywords">
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230819 23:58:04.306" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230819 23:58:02.306" endtime="20230819 23:58:04.306"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>${No_Preview_Message}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20230819 23:58:04.342" level="INFO">Current page contains element 'xpath=//div[@class='preview-message']/p[contains(text(), 'No preview available for this file')]'.</msg>
+<status status="PASS" starttime="20230819 23:58:04.307" endtime="20230819 23:58:04.342"/>
+</kw>
+<status status="PASS" starttime="20230819 23:58:02.305" endtime="20230819 23:58:04.342"/>
+</kw>
+<doc>This test case will check the preview message of a non image type file</doc>
+<tag>Functional</tag>
+<tag>Negative</tag>
+<status status="PASS" starttime="20230819 23:57:59.804" endtime="20230819 23:58:04.343"/>
+</test>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230819 23:58:04.344" endtime="20230819 23:58:07.296"/>
+</kw>
+<doc>This project will test the file upload and download application</doc>
+<status status="FAIL" starttime="20230819 23:57:10.948" endtime="20230819 23:58:07.296"/>
+</suite>
+<statistics>
+<total>
+<stat pass="10" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="10" fail="1" skip="0">Functional</stat>
+<stat pass="5" fail="1" skip="0">Negative</stat>
+<stat pass="5" fail="0" skip="0">Positive</stat>
+</tag>
+<suite>
+<stat pass="10" fail="1" skip="0" id="s1" name="TestCases">TestCases</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20230819 23:57:11.360" level="ERROR">Error in file 'C:\Users\Sadhana\PycharmProjects\FileUploadAndDownload\Tests\TestCases.robot' on line 6: Invalid resource file extension '.py'. Supported extensions are '.json', '.resource', '.rest', '.robot', '.rsrc', '.rst', '.tsv' and '.txt'.</msg>
+</errors>
+</robot>

@@ -1,0 +1,8 @@
+File1,adding 1st file in the app,F1.jpeg,TC1
+File2,adding 2nd file in the app,F2.HEIC,TC2
+,adding 3rd file in the app,F1.jpeg,TC3
+File4,,F1.jpeg,TC4
+,,F5.jpeg,TC5
+File6,adding a duplicate file in the app,F1.jpeg,TC6
+File7_~!@#$%^&*()+|}{:?><./;'\][=-,~!@#$%^&*()_+|}{:?><./;'\][=-,F7.jpeg,TC7
+,adding a non image type file in the app,F11.docx,TC11
